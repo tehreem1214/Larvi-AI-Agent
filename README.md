@@ -1,20 +1,32 @@
-# Larvi AI Agent
+# Larvi AI Agent 🤖
 
-Larvi is an AI-powered personal assistant that connects with Google services to help users manage Gmail and Google Calendar through natural-language commands.
+**Larvi** is an AI-powered personal assistant that allows users to manage **Gmail and Google Calendar** using natural-language commands.
 
-## Features
+Instead of manually navigating through Gmail or Google Calendar, users can communicate with Larvi through simple commands such as:
 
-### Google Authentication
+> "Find emails from LinkedIn"
+
+> "Create a meeting tomorrow at 11 AM called Larvi Test Meeting"
+
+Larvi understands the request, routes it to the appropriate agent, and performs the required action through Google's APIs.
+
+---
+
+## ✨ Features
+
+### 🔐 Google Authentication
 
 * Google OAuth 2.0 authentication
 * Secure Google account connection
+* Gmail API access
+* Google Calendar API access
 * OAuth token management
 
-### Gmail Integration
+### 📧 Gmail Agent
 
-Larvi can:
+Larvi supports:
 
-* Show recent emails
+* View recent emails
 * Search emails
 * Read individual emails
 * Summarize emails
@@ -22,72 +34,94 @@ Larvi can:
 * Send emails
 * Reply to emails
 
-### Google Calendar Integration
+### 📅 Calendar Agent
 
-Larvi can:
+Larvi supports:
 
-* Show upcoming calendar events
-* Create meetings and events
+* View upcoming calendar events
+* Create meetings/events
 * Reschedule events
-* Delete or cancel events
+* Delete/cancel events
 
-### AI Agent Architecture
+### 🧠 Master Agent
 
-Larvi uses an agent-based architecture to understand user requests and route them to the appropriate tools.
+The Master Agent acts as the main controller.
 
-The master agent determines whether a request is related to Gmail, Google Calendar, or another supported assistant task.
+It analyzes the user's natural-language request and routes it to the appropriate agent/tool.
 
-## Tech Stack
+```text
+User Request
+     │
+     ▼
+Master Agent
+     │
+     ├───────────────┐
+     ▼               ▼
+Gmail Agent     Calendar Agent
+     │               │
+     ▼               ▼
+ Gmail API      Calendar API
+```
 
-* Python
-* FastAPI
-* LangChain
-* LangGraph
-* Google OAuth 2.0
-* Gmail API
-* Google Calendar API
-* HTML
-* CSS
-* JavaScript
+---
 
-## Project Structure
+## 🛠️ Tech Stack
+
+| Technology          | Purpose              |
+| ------------------- | -------------------- |
+| Python              | Backend development  |
+| FastAPI             | REST API             |
+| LangChain           | LLM/agent framework  |
+| LangGraph           | Agent workflow       |
+| Google OAuth 2.0    | Authentication       |
+| Gmail API           | Email operations     |
+| Google Calendar API | Calendar operations  |
+| HTML                | Frontend             |
+| CSS                 | Frontend styling     |
+| JavaScript          | Frontend interaction |
+
+---
+
+## 📁 Project Structure
 
 ```text
 Larvi/
-|
-|-- app/
-|   |-- agents/
-|   |   |-- calendar_agent.py
-|   |   |-- email_agent.py
-|   |   `-- master_agent.py
-|   |
-|   |-- auth/
-|   |   `-- google_auth.py
-|   |
-|   |-- state/
-|   |   `-- conversation_state.py
-|   |
-|   |-- tools/
-|   |   |-- calendar_tool.py
-|   |   |-- calendar_tools.py
-|   |   |-- email_tools.py
-|   |   `-- gmail_tool.py
-|   |
-|   |-- config.py
-|   `-- main.py
-|
-|-- frontend/
-|   |-- index.html
-|   |-- script.js
-|   `-- style.css
-|
-|-- .env.example
-|-- .gitignore
-|-- requirements.txt
-`-- README.md
+│
+├── app/
+│   ├── agents/
+│   │   ├── calendar_agent.py
+│   │   ├── email_agent.py
+│   │   └── master_agent.py
+│   │
+│   ├── auth/
+│   │   └── google_auth.py
+│   │
+│   ├── state/
+│   │   └── conversation_state.py
+│   │
+│   ├── tools/
+│   │   ├── calendar_tool.py
+│   │   ├── calendar_tools.py
+│   │   ├── email_tools.py
+│   │   └── gmail_tool.py
+│   │
+│   ├── config.py
+│   └── main.py
+│
+├── frontend/
+│   ├── index.html
+│   ├── script.js
+│   └── style.css
+│
+├── .env.example
+├── .gitignore
+├── requirements.txt
+└── README.md
 ```
 
-## Installation
+---
+
+## 🚀 Installation
 
 ### 1. Clone the repository
 
@@ -104,7 +138,7 @@ Windows:
 python -m venv venv
 ```
 
-Activate the virtual environment:
+Activate it:
 
 ```powershell
 venv\Scripts\activate
@@ -116,42 +150,66 @@ venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-## Google OAuth Setup
+---
+
+## 🔑 Google OAuth Setup
 
 Larvi requires Google OAuth credentials to access Gmail and Google Calendar.
 
-Create a Google Cloud project and enable:
+### 1. Create a Google Cloud Project
+
+Create a project in Google Cloud Console.
+
+### 2. Enable APIs
+
+Enable:
 
 * Gmail API
 * Google Calendar API
 
-Configure an OAuth client and download the Google client credentials.
+### 3. Configure OAuth
 
-Create a `.env` file based on `.env.example` and add the required configuration.
+Create an OAuth 2.0 Client ID and configure the required consent screen.
 
-Never upload `.env`, Google OAuth tokens, or Google client secrets to GitHub.
+Download the Google OAuth client credentials required by the application.
 
-## Run the Application
+### 4. Environment Variables
 
-Start the FastAPI server:
+Create a `.env` file using `.env.example` as a reference.
+
+```text
+.env
+```
+
+Add the required Google OAuth and application configuration.
+
+> ⚠️ **Never commit `.env`, Google OAuth client secrets, or OAuth tokens to GitHub.**
+
+---
+
+## ▶️ Run the Application
+
+Start the FastAPI backend:
 
 ```powershell
 uvicorn app.main:app --reload
 ```
 
-The backend will normally be available at:
+The application will normally be available at:
 
 ```text
 http://127.0.0.1:8000
 ```
 
-FastAPI documentation:
+FastAPI Swagger documentation:
 
 ```text
 http://127.0.0.1:8000/docs
 ```
 
-## Example Commands
+---
+
+## 💬 Example Commands
 
 ### Gmail
 
@@ -164,23 +222,23 @@ Find emails from LinkedIn
 ```
 
 ```text
-Read email 1a02993a567be211
+Read email 1a0298705bdc827f
 ```
 
 ```text
-Summarize email 1a02993a567be211
+Summarize email 1a0298705bdc827f
 ```
 
 ```text
-Create a draft email to example@gmail.com
+Create a draft email to example@gmail.com subject Test Subject body Hello
 ```
 
 ```text
-Send an email to example@gmail.com
+Send an email to example@gmail.com subject Test Email body Hello from Larvi
 ```
 
 ```text
-Reply to email 1a02993a567be211
+Reply to email MESSAGE_ID with body Thank you for your email.
 ```
 
 ### Google Calendar
@@ -201,32 +259,102 @@ Reschedule Larvi Test Meeting to August 23 at 2 PM
 Delete the meeting Larvi Test Meeting
 ```
 
-## Tested Functionality
+---
+
+## 🧪 Tested Functionality
+
+Larvi's core integrations have been tested successfully using real Gmail and Google Calendar operations.
 
 ### Gmail
 
-* Google authentication
-* Account connection
-* Recent emails
-* Email search
-* Read email
-* Email summarization
-* Create email draft
-* Send email
-* Reply to email
+* ✅ Google authentication
+* ✅ Account connection
+* ✅ Recent emails
+* ✅ Email search
+* ✅ Read email
+* ✅ Email summarization
+* ✅ Create email draft
+* ✅ Send email
+* ✅ Reply to email
 
 ### Google Calendar
 
-* Show calendar
-* Create event
-* Reschedule event
-* Delete event
+* ✅ Show calendar
+* ✅ Create event
+* ✅ Reschedule event
+* ✅ Delete event
 
-## Security
+---
 
-Sensitive credentials are intentionally excluded from the repository.
+## 🔄 Example Agent Flow
 
-The following files should never be committed:
+For example, when the user enters:
+
+```text
+Find emails from LinkedIn
+```
+
+The request follows this flow:
+
+```text
+User
+ │
+ ▼
+FastAPI
+ │
+ ▼
+Master Agent
+ │
+ ▼
+Email Agent
+ │
+ ▼
+Gmail Tool
+ │
+ ▼
+Gmail API
+ │
+ ▼
+Email Results
+ │
+ ▼
+User
+```
+
+For a calendar request:
+
+```text
+User
+ │
+ ▼
+FastAPI
+ │
+ ▼
+Master Agent
+ │
+ ▼
+Calendar Agent
+ │
+ ▼
+Calendar Tool
+ │
+ ▼
+Google Calendar API
+ │
+ ▼
+Calendar Result
+ │
+ ▼
+User
+```
+
+---
+
+## 🔒 Security
+
+Sensitive credentials are intentionally excluded from this repository.
+
+The following files/data should **never** be committed:
 
 ```text
 .env
@@ -236,20 +364,54 @@ venv/
 __pycache__/
 ```
 
-## Project Status
+The `.gitignore` file is configured to help prevent accidental commits of sensitive/local files.
 
-Larvi's core Gmail and Google Calendar integrations have been implemented and tested successfully.
+---
 
-The project is currently suitable for local demonstration and further development.
+## 📌 Project Status
 
-## Author
+### Core functionality: COMPLETE ✅
+
+Larvi currently provides working Gmail and Google Calendar integrations through a natural-language AI agent architecture.
+
+The project is currently suitable for:
+
+* Local demonstration
+* Academic project presentation
+* AI agent demonstrations
+* Further development
+* Future deployment/customization
+
+---
+
+## 🔮 Future Improvements
+
+Possible future improvements include:
+
+* Voice-based interaction
+* Better conversational memory
+* More Google Workspace integrations
+* Google Drive integration
+* Google Docs integration
+* Smarter multi-step agent workflows
+* Production deployment
+* Improved frontend UI
+* User-specific permissions and session management
+
+---
+
+## 👩‍💻 Author
 
 **Syeda Tehreem Fatima**
 
 GitHub:
-
 https://github.com/tehreem1214
 
-## License
+Project Repository:
+https://github.com/tehreem1214/Larvi-AI-Agent
+
+---
+
+## 📄 License
 
 This project is intended for educational and demonstration purposes.
