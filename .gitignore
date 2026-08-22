@@ -1,0 +1,11 @@
+venv/
+.env
+credentials.json
+token.json
+__pycache__/
+*.pyc
+google_client_secret.json
+client_secret.json
+google_client_secret.json
+google_token.json
+client_secret.json
