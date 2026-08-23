@@ -1,11 +1,12 @@
+```toml
 [project]
 name = "larvi-ai-agent"
 version = "0.1.0"
 description = "Larvi AI Agent"
 requires-python = ">=3.10"
+
 dependencies = [
-    "fastapi",
-    "uvicorn",
+    "fastapi[standard]",
 ]
 
 [tool.fastapi]
@@ -13,3 +14,4 @@ entrypoint = "app.main:app"
 
 [tool.setuptools.packages.find]
 include = ["app*"]
+```
